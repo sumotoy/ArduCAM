@@ -8,3 +8,5 @@ It actually works perfect with ESP8266 and Teensy 3.0, 3.1 but I have in mind ma
 carry the initializations of many cameras and I want to avoid this!
 Some example has been modified to use the new library extension, some other not, but this is a working on project so things will change even
 more, I'll wait the scheme it's clear before change all examples and since I own only one camera it will take time.
+This version initialize SPI and wire with begin(), so some code in examples it's useless, see the new ESP8266 examples.
+I have also changed some other function and now everithing uses correctly SPI Transactions, this allow me to play nice with other SPI devices.
