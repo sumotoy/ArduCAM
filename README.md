@@ -1,12 +1,8 @@
 # ArduCAM
 A refractored version of ArduCAM, keep away from distro because massive changes!
-I was trying to use ArduCAM with Teensy and ESP8266 but had a lot of problems, so I focused on software and I decided to clean
-it and get better results. I already proposed a Pull to Lee, the developer, but at the end this wasn't enough and I decided to write a separate branch
-because the massive changes. Nobody likes to do massive changes as Pull request!
-All copyrights and licences are the same of the original version and this one it's here just for study.
-It actually works perfect with ESP8266 and Teensy 3.0, 3.1 but I have in mind massive changes in the code organization since the library
-carry the initializations of many cameras and I want to avoid this!
-Some example has been modified to use the new library extension, some other not, but this is a working on project so things will change even
-more, I'll wait the scheme it's clear before change all examples and since I own only one camera it will take time.
-This version initialize SPI and wire with begin(), so some code in examples it's useless, see the new ESP8266 examples.
-I have also changed some other function and now everithing uses correctly SPI Transactions, this allow me to play nice with other SPI devices.
+Backgrounds:<br>
+ArduCAM it's a nice hardware design, it uses an FPGA and camera with exchangeable lenses and internally does all the calculations so it's easy to integrate it in many project, Lee done a great work as hardware and FPGA design, the API are well done but the Arduino support it's actually a bit too messy for me, I cannot get working on a ESP8266 despite there's a tutorial on site (with wrong connection explained!), it completely missed support for Teensy and I had several problem with SPI transactions, not least, the SPI doesn't play nice with other SPI devices. Inside library there's a TFT library that I decided to avoid completely, it's an old version modified and once again it doesn't play nice with other SPI devices (and even this one lack of Teensy support).
+If everithing works as I suppose the end user can choose the TFT/OLED he prefere!
+I proposed some days ago a pull to Lee but at the end it's not enough, the original library carry initialization for many cameras so I will split all these in code chunks and create a virtual lib calls for the main code (that is common), this simplify a lot the integration on projects and user have just to declare withch came he's using at the start of the project. It have also the ability to use different cameras in the same project.
+Actually this version works perfectly with ESP8266 and Teensy 3.0, 3.1 and LC as opposed the original and I already modified some examples, other example will not work because I'm using a missed begin() function to initialize correctly (for the processor used) wire and SPI and now the library it's using the advantages of SPI Transactions (that recently was added to ESP8266 as well).
+This is a working on experiment so do not apology, I will use to propose to Lee some changes without using a massive pull to his original library (none developer like this).
